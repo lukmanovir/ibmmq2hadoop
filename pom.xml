@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Copyright 2020 The Tesey Software Authors
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+   http://www.apache.org/licenses/LICENSE-2.0
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+
+    <groupId>org.alfa.beam.exporter</groupId>
+    <artifactId>jms-exporter</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <properties>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <beam.version>2.12.0</beam.version>
+        <hadoop.version>2.7.0</hadoop.version>
+        <avro.version>1.10.0.1p</avro.version>
+        <log4j.version>1.2.17</log4j.version>
+        <snakeyaml.version>1.21</snakeyaml.version>
+        <ibmmqclient.version>9.1.2.0</ibmmqclient.version>
+        <saxon-he.version>9.4</saxon-he.version>
+        <beam-io-jms.version>2.6.0</beam-io-jms.version>
+    </properties>
+
+    <repositories>
+        <!--
+        <repository>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+            <id>bintray-zolyfarkas-core</id>
+            <name>bintray</name>
+            <url>https://dl.bintray.com/zolyfarkas/core</url>
+        </repository>
+        -->
+        <repository>
+            <id>github</id>
+            <url>https://maven.pkg.github.com/zolyfarkas/*</url>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>jitpack.io</id>
+            <url>https://jitpack.io</url>
+        </repository>
+    </repositories>
+    <pluginRepositories>
+        <pluginRepository>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+            <id>bintray-zolyfarkas-core</id>
+            <name>bintray-plugins</name>
+            <url>https://dl.bintray.com/zolyfarkas/core</url>
+        </pluginRepository>
+    </pluginRepositories>
+
+    <dependencies>
+        <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-pool2 -->
+        <!--
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-pool2</artifactId>
+            <version>2.11.1</version>
+        </dependency>
+        -->
+        <!-- https://mvnrepository.com/artifact/org.messaginghub/pooled-jms -->
+
+        <dependency>
+            <groupId>org.messaginghub</groupId>
+            <artifactId>pooled-jms</artifactId>
+            <version>1.2.4</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.beam</groupId>
+            <artifactId>beam-sdks-java-extensions-sql</artifactId>
+            <version>${beam.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.beam</groupId>
+            <artifactId>beam-sdks-java-io-kafka</artifactId>
+            <version>${beam.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.beam</groupId>
+            <artifactId>beam-sdks-java-io-parquet</artifactId>
+            <version>${beam.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.beam</groupId>
+            <artifactId>beam-sdks-java-io-jms</artifactId>
+            <version>${beam-io-jms.version}</version>
+        </dependency>
+        <!--<dependency>
+            <groupId>org.apache.beam</groupId>
+            <artifactId>beam-runners-flink-1.7</artifactId>
+            <version>${beam.version}</version>
+        </dependency>-->
+        <dependency>
+            <groupId>org.apache.beam</groupId>
+            <artifactId>beam-runners-spark</artifactId>
+            <version>${beam.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.hadoop</groupId>
+            <artifactId>hadoop-common</artifactId>
+            <version>${hadoop.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.yaml</groupId>
+            <artifactId>snakeyaml</artifactId>
+            <version>${snakeyaml.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>${log4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.avro</groupId>
+            <artifactId>avro</artifactId>
+            <version>${avro.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.ibm.mq</groupId>
+            <artifactId>com.ibm.mq.allclient</artifactId>
+            <version>${ibmmqclient.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>net.sf.saxon</groupId>
+            <artifactId>Saxon-HE</artifactId>
+            <version>${saxon-he.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>20201115</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.auto.value</groupId>
+            <artifactId>auto-value-annotations</artifactId>
+            <version>1.9</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.auto.value</groupId>
+            <artifactId>auto-value</artifactId>
+            <version>1.9</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.orc</groupId>
+            <artifactId>orc-core</artifactId>
+            <version>1.5.6</version>
+        </dependency>
+        <!--
+        <dependency>
+            <groupId>org.apache.beam</groupId>
+            <artifactId>beam-sdks-java-io-hdfs</artifactId>
+            <version>${beam.version}</version>
+        </dependency>
+        -->
+        <!--<dependency>
+            <groupId>org.apache.beam</groupId>
+            <artifactId>beam-sdks-java-io-hadoop-common</artifactId>
+            <version>${beam.version}</version>
+        </dependency>-->
+        <dependency>
+            <groupId>org.apache.beam</groupId>
+            <artifactId>beam-sdks-java-io-hadoop-file-system</artifactId>
+            <version>${beam.version}</version>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>3.2.1</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                        <configuration>
+                            <transformers>
+                                <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                                    <mainClass>org.alfa.beam.exporter.JmsExportingJob</mainClass>
+                                </transformer>
+                                <transformer implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer"/>
+                            </transformers>
+                            <filters>
+                                <filter>
+                                    <artifact>*:*</artifact>
+                                    <excludes>
+                                        <exclude>META-INF/*.SF</exclude>
+                                        <exclude>META-INF/*.DSA</exclude>
+                                        <exclude>META-INF/*.RSA</exclude>
+                                    </excludes>
+                                </filter>
+                            </filters>
+                            <relocations>
+                                <relocation>
+                                    <pattern>org.apache.parquet</pattern>
+                                    <shadedPattern>shaded.org.apache.parquet</shadedPattern>
+                                </relocation>
+                                <relocation>
+                                    <pattern>shaded.parquet</pattern>
+                                    <shadedPattern>reshaded.parquet</shadedPattern>
+                                </relocation>
+                                <relocation>
+                                    <pattern>org.apache.avro</pattern>
+                                    <shadedPattern>shaded.org.apache.avro</shadedPattern>
+                                </relocation>
+
+                            </relocations>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+        <sourceDirectory>${basedir}/src/main/java</sourceDirectory>
+        <resources>
+            <resource>
+                <directory>${basedir}/src/main/resources</directory>
+            </resource>
+        </resources>
+    </build>
+
+</project>

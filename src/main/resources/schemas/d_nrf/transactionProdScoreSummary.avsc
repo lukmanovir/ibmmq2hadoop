@@ -1,0 +1,8 @@
+{
+  "namespace": "d_nrf",
+  "name": "transaction_prod_score_summary",
+  "type": "record",
+  "fields": [
+    {"name": "transaction_scores", "type": "string"}
+  ]
+}
